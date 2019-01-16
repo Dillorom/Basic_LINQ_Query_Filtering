@@ -71,17 +71,92 @@ namespace LINQ_Examples
 
         static double[] exchange = { 0.89, 0.65, 120.29 };
         #endregion
-
+        
         static void Main(string[] args)
         {
-            IEnumerable<Customer> stateQuery =
+            //IEnumerable<Customer> stateQuery =
+            //    from c in customers
+            //    where c.State == "OR" & c.Price > 100
+            //    select c;
+            //foreach(Customer c in stateQuery)
+            //{
+            //    Console.WriteLine("{0} {1}", c.First, c.Last);
+            //}
+
+            //IEnumerable<Customer> orderbyQuery =
+            //    from c in customers
+            //    orderby c.State descending
+            //    select c;
+            //foreach (Customer c in orderbyQuery)
+            //{
+            //    Console.WriteLine("{0} {1} {2}", c.First, c.Last, c.State);
+            //}
+
+            //IEnumerable<IGrouping<string, Customer>> groupQuery =
+            //    from c in customers
+            //    group c by c.State;
+            //foreach (IGrouping<string, Customer> stateGroup in groupQuery)
+            //{
+            //    Console.WriteLine("{0} ", stateGroup.Key);
+            //    foreach (Customer c in stateGroup)
+            //    {
+            //        Console.WriteLine("{0} {1}", c.First, c.Last);
+            //    }
+            //}
+
+            //IEnumerable<IGrouping<string, Customer>> groupQuery =
+            //  from c in customers
+            //  group c by c.State;
+
+            //IEnumerable<IGrouping<bool, Customer>> groupPriceQuery =
+            //    from c in customers
+            //    group c by c.Price > 1000;
+            //foreach (IGrouping<bool, Customer> priceGroup in groupPriceQuery)
+            //{
+            //    Console.WriteLine("{0} ", priceGroup.Key);
+            //    foreach (Customer c in priceGroup)
+            //    {
+            //        Console.WriteLine("{0} {1}: {2}", c.First, c.Last, c.Price);
+            //    }
+            //}
+
+            //var matchupQuery =
+            //    from c in customers
+            //    join d in distributors on c.State equals d.State
+            //    select new { custName = c.Last, distName = d.Name };
+            //foreach (var cd in matchupQuery)
+            //{
+            //    Console.WriteLine("{0} {1}", cd.custName, cd.distName);
+            //}
+
+            //var matchupQuery =
+            //   from c in customers
+            //   join d in distributors on c.State equals d.State
+            //   into matches
+            //   select new
+            //   {
+            //       custName = c.Last,
+            //       distName = matches.Select(dist => dist.Name)
+            //   };
+            //foreach (var cd in matchupQuery)
+            //{
+            //    Console.WriteLine("{0}", cd.custName);
+            //    foreach (var d in cd.distName)
+            //    {
+            //        Console.WriteLine("   {0}", d);
+            //    }
+            //}
+
+            IEnumerable<double> exchangeQuery =
                 from c in customers
-                where c.State == "OR" & c.Price > 100
-                select c;
-            foreach(Customer c in stateQuery)
+                from e in exchange
+                select c.Price * e;
+            foreach (double ex in exchangeQuery)
             {
-                Console.WriteLine("{0} {1}", c.First, c.Last);
+                Console.WriteLine("{0:N2}", ex);
             }
+
+
             Console.ReadKey();
         }
     }
